@@ -10,6 +10,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { createAccount } from "@/lib/actions/user.actions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import Link from "next/link";
@@ -29,7 +30,9 @@ const authFormSchema = ({ type }: Props) => {
         ? z
             .string()
             .min(2, { message: "Full name must be at least 2 characters long" })
-            .max(50, { message: "Full name must be at most 50 characters long" })
+            .max(50, {
+              message: "Full name must be at most 50 characters long",
+            })
         : z.string().optional(),
   });
 };
@@ -37,6 +40,7 @@ const authFormSchema = ({ type }: Props) => {
 const AuthForm = ({ type }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [accountId, setAccountId] = useState(null);
 
   const formSchema = authFormSchema({ type });
   const form = useForm<z.infer<typeof formSchema>>({
@@ -48,7 +52,21 @@ const AuthForm = ({ type }: Props) => {
   });
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    console.log(data);
+    setIsLoading(true);
+    setErrorMessage("");
+
+    try {
+      const user = await createAccount({
+        fullName: data.fullName || "",
+        email: data.email,
+      });
+
+      setAccountId(user.accountId);
+    } catch {
+      setErrorMessage("Failed to create an account. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
