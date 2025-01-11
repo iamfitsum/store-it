@@ -10,13 +10,14 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { createAccount } from "@/lib/actions/user.actions";
+import { createAccount, signInUser } from "@/lib/actions/user.actions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import OtpModal from "./OTPModal";
 
 type Props = {
   type: "sign-in" | "sign-up";
@@ -56,10 +57,13 @@ const AuthForm = ({ type }: Props) => {
     setErrorMessage("");
 
     try {
-      const user = await createAccount({
-        fullName: data.fullName || "",
-        email: data.email,
-      });
+      const user =
+        type === "sign-up"
+          ? await createAccount({
+              fullName: data.fullName || "",
+              email: data.email,
+            })
+          : await signInUser({ email: data.email });
 
       setAccountId(user.accountId);
     } catch {
@@ -154,7 +158,9 @@ const AuthForm = ({ type }: Props) => {
         </form>
       </Form>
 
-      {/* TODO: OTP Verification */}
+      {accountId && (
+        <OtpModal email={form.getValues("email")} accountId={accountId} />
+      )}
     </>
   );
 };
