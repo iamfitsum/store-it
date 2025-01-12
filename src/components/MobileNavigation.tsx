@@ -18,16 +18,12 @@ import { Button } from "./ui/button";
 import { signOutUser } from "@/lib/actions/user.actions";
 
 type Props = {
-  ownerId: string;
-  accountId: string;
   fullName: string;
   avatar: string;
   email: string;
 };
 
 const MobileNavigation = ({
-  ownerId,
-  accountId,
   fullName,
   avatar,
   email,
