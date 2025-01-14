@@ -134,9 +134,9 @@ Follow these steps to set up the project locally on your machine.
 
 Make sure you have the following installed on your machine:
 
-- Git
-- Node.js
-- npm (Node Package Manager)
+- [Git](https://git-scm.com/)
+- [Node.js](https://nodejs.org/)
+- [npm (Node Package Manager)](https://www.npmjs.com/)
 
 ### Cloning the Repository
 
@@ -167,7 +167,7 @@ NEXT_PUBLIC_APPWRITE_BUCKET=
 NEXT_APPWRITE_SECRET=
 ```
 
-Replace the values with your actual Appwrite credentials. You can obtain these credentials by signing up and creating a new project on the Appwrite platform.
+Replace the values with your actual Appwrite credentials. You can obtain these credentials by signing up and creating a new project on the [Appwrite platform](https://appwrite.io).
 
 ### Running the Project
 
