@@ -3,7 +3,9 @@
   <img src="public/assets/images/banner.png" alt="StoreIt Banner" style="width: 100%;"  />
 </div>
 
-StoreIt is a platform designed to simplify file management and sharing. With a modern, responsive interface and powerful features, it ensures a seamless experience for users to organize and share their files effectively.
+<br/>
+
+**StoreIt** is a platform designed to simplify file management and sharing. With a modern, responsive interface and powerful features, it ensures a seamless experience for users to organize and share their files effectively.
 
 ---
 
