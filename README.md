@@ -1,6 +1,6 @@
 <div align="center">
   <h1>StoreIt - The only storage solution you need.</h1>
-  <img src="public/assets/images/banner.png" alt="Ryde Banner" />
+  <img src="public/assets/images/banner.png" alt="StoreIt Banner" style="width: 100%;"  />
 </div>
 
 StoreIt is a platform designed to simplify file management and sharing. With a modern, responsive interface and powerful features, it ensures a seamless experience for users to organize and share their files effectively.
@@ -10,7 +10,7 @@ StoreIt is a platform designed to simplify file management and sharing. With a m
 ## 📑 Table of Contents
 
 - [✨ Features](#-features)
-- [🛠️ Technologies Used](#-technologies-used)
+- [🛠️ Technologies Used](#%EF%B8%8F-technologies-used)
 - [📂 File Structure](#-file-structure)
 - [🚀 Getting Started](#-getting-started)
 - [🙏 Acknowledgements](#-acknowledgements)
