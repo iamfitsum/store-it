@@ -1,5 +1,5 @@
 import Sort from "@/components/Sort";
-import { getFiles } from "@/lib/actions/file.actions";
+import { getFiles, getTotalSpaceUsed } from "@/lib/actions/file.actions";
 import { convertFileSize, getFileTypesParams } from "@/lib/utils";
 import Card from "@/components/Card";
 import { Models } from "node-appwrite";
@@ -8,12 +8,15 @@ const Page = async ({ searchParams, params }: SearchParamProps) => {
   const type = ((await params).type as string) || "";
   const searchText = ((await searchParams)?.query as string) || "";
   const sort = ((await searchParams)?.sort as string) || "";
-  
+
   const types = getFileTypesParams(type) as FileType[];
-  
+
   const files = await getFiles({ types, searchText, sort });
 
-  const totalSize = convertFileSize(files.documents.reduce((acc: number, file: Models.Document) => acc + file.size, 0)); // Convert bytes to MB
+  // const totalSize = convertFileSize(files.documents.reduce((acc: number, file: Models.Document) => acc + file.size, 0)); // Convert bytes to MB
+  const totalSize = type === "media"
+    ? convertFileSize((await getTotalSpaceUsed()).video?.size + (await getTotalSpaceUsed()).audio?.size)
+    : convertFileSize((await getTotalSpaceUsed())[type.slice(0, -1)]?.size);
 
   return (
     <div className="page-container">
